@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
+import List from '@/components/List'
 import Config from '../config'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+//  mode: 'history',
   base: Config.base_path,
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 }
@@ -13,11 +14,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      name: 'Home',
+      component: Home,
       props: {
-        msg: 'Welcome to Your Vue.js PWA'
       }
+    },
+    {
+      path: '/email/:email',
+      name: 'List',
+      component: List
     }
   ]
 })
