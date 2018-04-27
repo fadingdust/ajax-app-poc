@@ -1,0 +1,24 @@
+{
+  "name": "pwa-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend to minimize public API calls",
+  "author": "m <mark@mwallace.info>",
+  "scripts": {
+    "serve": "PORT=8088 babel-node server.js --presets es2015,stage-2"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "bunyan": "^1.8.12",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "lowdb": "^1.0.0"
+  }
+}

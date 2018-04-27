@@ -70,7 +70,7 @@
 
 <script>
 import numeral from 'numeral'
-import clearbit from '@/services/clearbit'
+import appApi from '@/services/appService'
 
 export default {
 
@@ -98,11 +98,9 @@ export default {
 
   methods: {
     logoURLFromService: function (domain) {
-      let cbService = clearbit.Service.getFromAPI(domain)
-      cbService.then(result => {
-        console.log('listItem.logo:', domain, result)
-
-        this.iconURL = result.iconURL
+      let logoResponse = appApi.Service.getIconFromAPI(domain)
+      logoResponse.then(result => {
+        if (result.iconURL !== '') this.iconURL = result.iconURL
       })
         .catch(err => {
           if (err.status === 404) {

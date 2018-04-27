@@ -2,7 +2,7 @@
   <div class="container fluid">
 
       <div v-if="!listData">
-        <p>How about searching?</p>
+        <p>Hmm.. Something went wrong </p>
       </div>
 
       <div v-if="error" class="status-message text-xs-center">
@@ -10,7 +10,7 @@
         <p class="xs8 offset-xs2" v-html="errorString"></p>
       </div>
 
-      <div class="list layout column align-center" v-if="listData.length">
+      <div class="list layout column align-center" v-if="listData">
         <ListItem v-for="item in listData" :itemdata="item" :key="item.AddedDate+item.Domain"></ListItem>
       </div>
 
@@ -24,7 +24,7 @@
 </style>
 
 <script>
-import pwnd from '@/services/haveibeenpwnd'
+import appApi from '@/services/appService'
 import ListItem from '@/components/ListItem'
 
 export default {
@@ -34,7 +34,7 @@ export default {
   data: function () {
     return {
       email: '',
-      error: false,
+      error: true,
       errorString: '',
       errorIcon: '',
       listData: {}
@@ -44,8 +44,9 @@ export default {
     if (typeof this.$route !== 'undefined') this.email = this.$route.params.email
 
     if (this.email.length > 0) {
-      const service = pwnd.Service.getFromAPI(this.email)
+      const service = appApi.Service.getHacksFromAPI(this.email)
       service.then(result => {
+        console.log('list.result:', result)
         this.listData = result.events
       })
         .catch(err => {

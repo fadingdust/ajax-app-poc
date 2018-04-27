@@ -3,7 +3,7 @@
 
       <div>
         <h2>Welcome!</h2>
-        <p>How about searching?</p>
+        <p>Enter an email address above to see if its information has been compromised.</p>
       </div>
 
   </div>
@@ -11,7 +11,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-
 
 </style>
 

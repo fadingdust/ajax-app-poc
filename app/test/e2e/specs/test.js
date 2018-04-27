@@ -2,7 +2,7 @@
 // http://nightwatchjs.org/guide#usage
 
 module.exports = {
-  'default e2e tests': function (browser) {
+  'default home': function (browser) {
     // automatically uses dev Server port from /config.index.js
     // default: http://localhost:8080
     // see nightwatch.conf.js
@@ -10,10 +10,23 @@ module.exports = {
 
     browser
       .url(devServer)
-      .waitForElementVisible('#app', 5000)
+      .waitForElementVisible('#app', 2000)
 //      .assert.elementPresent('.hello')
-      .assert.containsText('blockquote', 'Welcome to Your Vue.js PWA')
-      .assert.elementCount('img', 1)
+      .assert.containsText('.content h2', 'Welcome!') //intro copy
+      .assert.elementCount('img', 1)  //logo
+      .end()
+  },
+
+  'default email page': function (browser) {
+
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer + '/#/email/bob@bob.com')
+      .waitForElementVisible('#app', 3000)
+      .assert.elementPresent('.list')
+//      .assert.containsText('.content h2', 'Welcome!')
+//      .assert.elementCount('img', 0)
       .end()
   }
+
 }

@@ -62,8 +62,8 @@ describe('List.vue', () => {
       errorString: 'Hello There'
     })
 
-    expect(wrapper.find('.error').exists()).toBe(true)
-    expect(wrapper.find('.error').html()).toMatch(new RegExp('Hello There'))
+    expect(wrapper.find('.status-message').exists()).toBe(true)
+    expect(wrapper.find('.status-message').html()).toMatch(new RegExp('Hello There'))
 
   }) // it
 

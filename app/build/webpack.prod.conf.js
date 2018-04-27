@@ -106,9 +106,34 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'vue-pwa',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: ['dist/**/*.{js,html,css,png}'],
       minify: true,
-      stripPrefix: 'dist/'
+      stripPrefix: 'dist/',
+      runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^https:\/\/local\.ajax\.com\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^https:\/\/local\.ajax\.com:8888\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^https:\/\/localhost:8888\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^https:\/\/github\.mwallace\.info\//,
+        handler: 'cacheFirst'
+      }]
     })
   ]
 })

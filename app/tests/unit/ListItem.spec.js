@@ -51,6 +51,8 @@ describe('ListItem.vue', () => {
     expect(wrapper.find('.list-item').html()).toMatch(new RegExp('is-verified'))
     expect(wrapper.find('.list-item').html()).toMatch(new RegExp('is-not-spam'))
 
+    expect(wrapper.find('.list-item .logo').html().indexOf('data') > -1 || wrapper.find('.list-item .logo').html().indexOf(itemData.Domain) > -1 ).toBeTruthy() // has icon
+
   }),
 
 
@@ -94,7 +96,7 @@ describe('ListItem.vue', () => {
       }
     });
 
-    expect(wrapper.findAll('.list-item').length).toBe(1)
+    expect(wrapper.findAll('.list-item').length).toBe(1) // has item
 
     expect(wrapper.find('.list-item').html()).toMatch(new RegExp('is-not-verified'))
 
