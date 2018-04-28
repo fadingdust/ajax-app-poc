@@ -1,5 +1,5 @@
 <template>
-  <div class="container fluid">
+  <div class="">
 
       <div v-if="!listData">
         <p>Hmm.. Something went wrong </p>
@@ -15,30 +15,96 @@
         <p class="xs8 offset-xs2" v-html="errorString"></p>
       </div>
 
-      <div class="list layout column align-center" v-if="listData">
-        <ListItem v-for="item in listData" :itemdata="item" :key="item.AddedDate+item.Domain"></ListItem>
+      <div class="list layout column align-center" v-if="listData && !loading">
+
+             <v-tabs
+                v-model="active_tab"
+                color="transparent"
+                dark
+                slider-color="orange  lighten-1"
+                class="tabs"
+              >
+                <div class="tabs-wrapper-custom flex md8 xs12">
+                  <v-tab ripple> Results </v-tab>
+                  <v-tab ripple> Summary </v-tab>
+                </div>
+                <v-tab-item>
+                  <v-layout row wrap>
+                      <ListItem v-for="item in listData" :itemdata="item" :key="item.AddedDate+item.Domain"></ListItem>
+                  </v-layout>
+                </v-tab-item>
+
+                <v-tab-item>
+                    <v-layout row pb-2>
+                       <v-flex xs12 ml-3 d-inline-block class="summary" v-if="summary.informationLeaked">
+                         <h3>{{summary.eventCount}} sources leaked:</h3>
+                         <v-chip  v-for="type in summary.informationLeaked" :key="type">{{type}}</v-chip>
+                       </v-flex>
+
+                    </v-layout>
+                </v-tab-item>
+
+             </v-tabs>
+
       </div>
 
   </div>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss" >
 .loading{
   text-align: center;
+  background: white;
+  padding: 2rem;
+
   img{
     max-width: 320px;
   }
-  p{
-  }
+
 }
 
+h3{
+  margin: 2rem auto 1rem auto;
+}
+
+.list{
+  padding-top:0;
+}
+
+/**  Customization for fixed toolbars **/
+.tabs{
+  position:relative;
+  overflow-x:hidden;
+  width:100%;
+}
+
+.tabs-wrapper-custom{
+  background:#789;
+}
+
+.tabs__bar{
+  position: fixed!important;
+  width:100%;
+  z-index:2000;
+}
+
+.tabs__items{
+  margin-top:48px;
+}
+.tabs__item,
+.tabs__div{
+  height:100%;
+  line-height:100%;
+  min-height:48px;
+}
 
 </style>
 
 <script>
 import appApi from '@/services/appService'
 import ListItem from '@/components/ListItem'
+import _ from 'lodash'
 
 export default {
   components: {
@@ -47,11 +113,13 @@ export default {
   data: function () {
     return {
       email: '',
-      error: true,
+      active_tab: '',
+      error: false,
       errorString: '',
       errorIcon: '',
       loading: true,
-      listData: {}
+      listData: [],
+      summary: {}
     }
   },
   created: function () {
@@ -63,6 +131,7 @@ export default {
         console.log('list.result:', result)
         this.listData = result.events
         this.loading = false
+        this.summary = this.summarize(result.events)
       })
         .catch(err => {
           this.error = true
@@ -89,6 +158,17 @@ export default {
               break
           }
         })
+    }
+  },
+  methods: {
+    summarize: function (events) {
+      let summary = {}
+      summary.eventCount = events.length
+      summary.informationLeaked = _.reduce(events, function (result, value, key) {
+        result = _.union(result, value.DataClasses)
+        return result
+      }, [])
+      return summary
     }
   }
 

@@ -1,14 +1,14 @@
 <template>
   <v-app>
   <v-card flat>
-    <v-toolbar dark color="primary" flat extended>
+    <v-toolbar dark color="primary" flat extended fixed>
     </v-toolbar>
-   <v-layout row pb-2>
+   <v-layout row pb-2 class="content-wrapper">
       <v-flex md8 offset-md2 xs12>
         <v-card flat class="card--flex-toolbar">
           <v-toolbar
-            class="grey--text"
-            card prominent
+            class="grey--text flex xs12 md8 offset-md2"
+            card prominent fixed
             extended extension-height="64px"
           >
             <router-link :to="{ name:'Home' }">
@@ -20,7 +20,7 @@
 
             <v-toolbar-title v-text="title"></v-toolbar-title>
 
-            <v-layout row slot="extension"  pb-2>
+            <v-layout row slot="extension">
               <v-flex xs10  offset-xs1>
 
                 <v-form v-model="form_valid" @submit.prevent="handleSearchSubmit" class="search-form">
@@ -50,16 +50,10 @@
           </v-toolbar>
 
           <v-content>
-            <router-view :key="this.$route.params.email"/>
+             <router-view :key="this.$route.params.email" />
           </v-content>
 
-          <v-footer fixed app>
-               <v-layout row pb-2>
-                <v-flex xs12 ml-3>
-                  <span>&copy; 2018</span>
-              </v-flex>
-              </v-layout>
-          </v-footer>
+          <!-- v-footer fixed app></v-footer -->
 
         </v-card>
       </v-flex>
@@ -68,6 +62,14 @@
   </v-app>
 </template>
 <style>
+
+.application .theme--light.list,
+.theme--light .list,
+.application .theme--light.card--flat,
+.theme--light .card--flat{
+  background-color:#fbfbfb!important;
+}
+
 .flex--submit{
   max-width:100px;
   margin-top: 8px;
@@ -77,8 +79,11 @@
   color: #000!important;
 }
 
-.card--flex-toolbar{
-  margin-top:-64px;
+.toolbar--prominent{
+  margin-top:64px!important;
+}
+main.content{
+  margin-top: 192px;
 }
 
 /** Color-change the search-bar **/
@@ -90,9 +95,17 @@
 
 }
 @media (max-width:940px){
-  .card--flex-toolbar{
-    margin-top:-110px;
+  .toolbar--prominent{
+    margin-top: 0!important;
   }
+  main.content{
+    margin-top: 128px;
+  }
+
+  .card--flex-toolbar{
+
+  }
+
 
   .theme--light .toolbar--prominent{
     background-color:#ffa726 !important;
@@ -130,6 +143,11 @@ export default {
   },
   created: function () {
     if (typeof this.$route !== 'undefined') this.user.email = this.$route.params.email
+
+    // Hijack the router as a common event bus :/
+    this.$router.app.$on('events-summary', (summary) => {
+      this.handleSummary(summary)
+    })
   },
   methods: {
     handleSearchSubmit () {
