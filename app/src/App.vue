@@ -23,18 +23,25 @@
             <v-layout row slot="extension"  pb-2>
               <v-flex xs10  offset-xs1>
 
-                <v-form v-model="form_valid" @submit.prevent="handleSearchSubmit">
+                <v-form v-model="form_valid" @submit.prevent="handleSearchSubmit" class="search-form">
+                  <v-layout row>
+                    <v-flex>
+                      <v-text-field
+                        name="input-email"
+                        label="Enter your Email"
+                        hint=""
+                        v-model="user.email"
+                        color="white"
+                        :rules="emailRules"
+                        required
+                        append-icon="fa-search"
+                      ></v-text-field>
+                    </v-flex>
 
-                  <v-text-field
-                    name="input-email"
-                    label="Enter your Email"
-                    hint=""
-                    v-model="user.email"
-                    color="white"
-                    :rules="emailRules"
-                    required
-                    append-icon="fa-search"
-                  ></v-text-field>
+                    <v-flex class="flex--submit">
+                      <v-btn type="submit" class="btn--submit">Search</v-btn>
+                    </v-flex>
+                  </v-layout>
 
                 </v-form>
               </v-flex>
@@ -61,6 +68,10 @@
   </v-app>
 </template>
 <style>
+.flex--submit{
+  max-width:100px;
+  margin-top: 8px;
+}
 
 .input-group.error--text{
   color: #000!important;
@@ -113,7 +124,7 @@ export default {
       form_valid: false,
       emailRules: [
         v => !!v || 'E-mail is required',
-        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || 'E-mail must be valid'
       ]
     }
   },
