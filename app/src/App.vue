@@ -87,14 +87,14 @@ main.content{
 }
 
 /** Color-change the search-bar **/
-@media (min-width:941px){
+@media (min-width:961px){
 
   .theme--light .toolbar--prominent .input-group.white--text{
     color:#000!important;
   }
 
 }
-@media (max-width:940px){
+@media (max-width:960px){
   .toolbar--prominent{
     margin-top: 0!important;
   }

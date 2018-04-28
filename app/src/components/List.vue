@@ -99,6 +99,11 @@ h3{
   line-height:100%;
   min-height:48px;
 }
+@media (max-width:960px){
+  .tabs__bar{
+    top: 128px;
+  }
+}
 
 </style>
 
