@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 let appApi = {}
-appApi.URI = 'http://localhost:8088'
+appApi.URI = 'https://beenhacked.mwallace.info/api'
 appApi.Service = {
 
   getHacksFromAPI (requestedEmail) {
