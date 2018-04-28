@@ -5,6 +5,11 @@
         <p>How about searching?</p>
       </div>
 
+      <div v-if="loading" class="loading">
+        <img src="static/padlock.gif" />
+        <p>Loading&hellip;</p>
+      </div>
+
       <div v-if="error" class="status-message text-xs-center">
         <v-icon mx-auto x-large color="teal lighten-1" :class="['fa', errorIcon, 'mt-4 mb-4']">{{errorIcon}}</v-icon>
         <p class="xs8 offset-xs2" v-html="errorString"></p>
@@ -19,6 +24,14 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.loading{
+  text-align: center;
+  img{
+    max-width: 320px;
+  }
+  p{
+  }
+}
 
 
 </style>
@@ -37,6 +50,7 @@ export default {
       error: false,
       errorString: '',
       errorIcon: '',
+      loading: true,
       listData: {}
     }
   },
@@ -47,13 +61,31 @@ export default {
       const service = pwnd.Service.getFromAPI(this.email)
       service.then(result => {
         this.listData = result.events
+        this.loading = false
       })
         .catch(err => {
           this.error = true
+          this.loading = false
           console.log('Error:', err)
-          if (err.status === 404) {
-            this.errorString = 'Congratulations, we could not find anything!'
+          if (err.ok === false) {
+            this.errorString = ''
             this.errorIcon = 'fa-smile-o'
+          }
+          switch (err.status) {
+            case 404:
+              this.errorString = 'Congratulations, we could not find anything!'
+              this.errorIcon = 'fa-smile-o'
+              break
+            case 500:
+            case 502:
+              this.errorString = 'Oh No! We could not get a response! Our services are down!'
+              this.errorIcon = 'fa-chain-broken'
+              break
+            default:
+            case 0:
+              this.errorString = 'Oh No! We could not get a response! Either we are offline, or you are offline.'
+              this.errorIcon = 'fa-chain-broken'
+              break
           }
         })
     }
