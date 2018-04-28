@@ -123,15 +123,15 @@ const webpackConfig = merge(baseWebpackConfig, {
         handler: 'cacheFirst'
       },
       {
-        urlPattern: /^https:\/\/local\.ajax\.com:8888\//,
+        urlPattern: /^https:\/\/cdnjs\.cloudflare\.com\//,
         handler: 'cacheFirst'
       },
       {
-        urlPattern: /^https:\/\/localhost:8888\//,
+        urlPattern: /^https:\/\/beenhacked\.mwallace\.info\/api\//,
         handler: 'cacheFirst'
       },
       {
-        urlPattern: /^https:\/\/github\.mwallace\.info\//,
+        urlPattern: /^https:\/\/beenhacked\.mwallace\.info\//,
         handler: 'cacheFirst'
       }]
     })

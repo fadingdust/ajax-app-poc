@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import List from '@/components/List'
-import Config from '../config'
+import Config from '../Config'
 Vue.use(Router)
 
 export default new Router({
