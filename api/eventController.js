@@ -16,14 +16,28 @@ export default  {
                 callback( result );
 
             }else{
-                callback({ email: email_address, events: [], error: {'source':'eventController', error: typeof result.events } });
+                callback({ email: email_address, events: [], error: {'source':'eventController', error: typeof result.events } })
             }
 
         })
         .catch(error => {
-            this.log.error({'service': 'eventController'}, error.message );    //[error.config.path, error.config.params, error.config.data] );   //Object.keys(error))
+            this.log.error({'service': 'eventController'}, error.message )
 
             callback({ email: email_address, events: [], error: {'source':'eventController', 'message': error.message } })
+        })
+
+    },
+
+
+    requestLogo: function(domain, callback){
+        const service = cb.Service.getFromAPI(domain)
+        service.then(result => {
+            callback(result)
+        })
+        .catch(error => {
+            this.log.error({'service': 'eventController'}, error)
+
+            callback(error)
         })
 
     }

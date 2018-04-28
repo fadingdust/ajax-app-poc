@@ -8,11 +8,9 @@ appApi.Service = {
     return new Promise((resolve, reject) => {
       Vue.http.get(appApi.URI + '/email/' + requestedEmail)
         .then(response => {
-          console.log('getHacksFromAPI:response: ', response.data)
           resolve(response.data)
         })
         .catch(error => {
-          console.log(error)
           reject(error)
         })
     })
@@ -23,7 +21,7 @@ appApi.Service = {
       Vue.http.get(appApi.URI + '/icon/' + requestedDomain)
         .then(response => {
           let thisURL = ''
-          if (typeof response.body.icon !== 'undefined') thisURL = response.body.icon.url
+          if (typeof response.body.iconURL !== 'undefined') thisURL = response.body.iconURL
 
           let responseData = { iconURL: thisURL, domain: requestedDomain }
           resolve(responseData)

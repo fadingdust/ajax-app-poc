@@ -5,7 +5,9 @@
   "description": "Backend to minimize public API calls",
   "author": "m <mark@mwallace.info>",
   "scripts": {
-    "serve": "PORT=8088 babel-node server.js --presets es2015,stage-2"
+    "dev": "PORT=8088 babel-node server.js --presets es2015,stage-2",
+    "build": "babel --presets es2015 ./ --out-dir dist --ignore node_modules,dist",
+    "serve":  "node dist/server.js"
   },
   "engines": {
     "node": ">= 4.0.0",

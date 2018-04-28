@@ -16,15 +16,17 @@ router.get(pathPrefix+'/',  function(req, res, next) {
     res.send('<html><h2>Welcome to my laboratory!</h2></html>')
 })
 
-// These 2 icon routes are available as a wrapper for clearbit, which returns a 404 instead of blank icon.
+// These 2 icon routes are available as a wrapper for clearbit; prefer a blank icon instead of a 404.
 router.get(pathPrefix+'/icon', (req, res, next) => {
-    const thisIcon = db.getIconByDomain('default.com')
-    res.json({ icon: thisIcon });
+    eventController.requestLogo('default.com', function(result){
+        res.json(result)
+    });
 })
 
 router.get(pathPrefix+'/icon/:domain', (req, res, next) => {
-    const thisIcon = db.getIconByDomain(req.params.domain)
-    res.json({ icon: thisIcon });
+    eventController.requestLogo(req.params.domain, function(result){
+        res.json(result)
+    });
 })
 
 router.get(pathPrefix+'/email/:email_address', (req, res, next) => {

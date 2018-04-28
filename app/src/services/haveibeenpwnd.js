@@ -24,7 +24,6 @@ pwnd.Service = {
 
     if (initialState.posts.length > 0) foundPosts = initialState.posts[requestedEmail]
 
-    console.log('InitialState.getPosts', requestedEmail, foundPosts)
     return foundPosts
   }
 
