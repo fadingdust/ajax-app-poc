@@ -20,8 +20,7 @@ pwnd.Service = {
         })
         .catch(function (error) {
             log.error({'service':'haveibeenpwned', 'url':error.config.url, 'path':error.config.path}, error.message );    //[error.config.path, error.config.params, error.config.data] );   //Object.keys(error))
-            let responseData = { events: [], domain: requestedEmail, error: { 'source':'pwnd.Service', 'raw': error.message} }
-            reject(responseData)
+            reject(error)
         })
     })
   }

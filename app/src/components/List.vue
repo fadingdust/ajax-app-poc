@@ -15,7 +15,7 @@
         <p class="xs8 offset-xs2" v-html="errorString"></p>
       </div>
 
-      <div class="list layout column align-center" v-if="listData && !loading">
+      <div class="list layout column align-center" v-if="listData && !loading && !error">
 
              <v-tabs
                 v-model="active_tab"
@@ -85,6 +85,7 @@ h3{
 
 .tabs__bar{
   position: fixed!important;
+  top:192px;
   width:100%;
   z-index:2000;
 }
@@ -130,8 +131,13 @@ export default {
       service.then(result => {
         console.log('list.result:', result)
         this.listData = result.events
-        this.loading = false
         this.summary = this.summarize(result.events)
+        if (result.error && result.events.length === 0) {
+          this.error = true
+          this.errorString = 'Congratulations, we could not find anything!'
+          this.errorIcon = 'fa-smile-o'
+        }
+        this.loading = false
       })
         .catch(err => {
           this.error = true
