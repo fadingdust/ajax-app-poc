@@ -22,7 +22,8 @@ module.exports = {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer + '/#/email/bob@bob.com')
-      .waitForElementVisible('#app', 4000)
+      .waitForElementVisible('#app', 1000)
+      .waitForElementVisible('.list', 1000)
       .assert.elementPresent('.list')
 //      .assert.containsText('.content h2', 'Welcome!')
 //      .assert.elementCount('img', 0)

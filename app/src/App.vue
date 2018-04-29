@@ -29,6 +29,7 @@
                       <v-text-field
                         name="input-email"
                         label="Enter your Email"
+                        type="email"
                         hint=""
                         v-model="user.email"
                         color="white"
