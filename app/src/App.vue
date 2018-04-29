@@ -1,13 +1,13 @@
 <template>
   <v-app>
   <v-card flat>
-    <v-toolbar dark color="primary" flat extended fixed>
+    <v-toolbar dark color="grey darken-2" flat extended fixed>
     </v-toolbar>
    <v-layout row pb-2 class="content-wrapper">
       <v-flex md8 offset-md2 xs12>
         <v-card flat class="card--flex-toolbar">
           <v-toolbar
-            class="grey--text flex xs12 md8 offset-md2"
+            class="white--text primary flex xs12 md8 offset-md2"
             card prominent fixed
             extended extension-height="64px"
           >
@@ -34,7 +34,7 @@
                         color="white"
                         :rules="emailRules"
                         required
-                        append-icon="fa-search"
+                        append-icon="fa-envelope-o"
                       ></v-text-field>
                     </v-flex>
 
@@ -75,8 +75,19 @@
   margin-top: 8px;
 }
 
+.application .theme--light.input-group input,
+.application .theme--light.input-group textarea,
+.theme--light .input-group input,
+.theme--light .input-group textarea,
+.application .theme--light.input-group:not(.input-group--error) label,
+.theme--light .input-group:not(.input-group--error) label{
+  color: #fff!important;
+  font-weight:bold;
+}
 .input-group.error--text{
-  color: #000!important;
+  color: #fff!important;
+  font-weight:bold;
+  font-style: italic;
 }
 
 .toolbar--prominent{
@@ -84,6 +95,10 @@
 }
 main.content{
   margin-top: 192px;
+}
+
+.theme--light .toolbar--prominent{
+ /* background-color:#d32f2f !important;  red.darken2*/
 }
 
 /** Color-change the search-bar **/
@@ -107,9 +122,6 @@ main.content{
   }
 
 
-  .theme--light .toolbar--prominent{
-    background-color:#ffa726 !important;
-  }
   .theme--light .toolbar--prominent.grey--text{
     color:#fff!important;
   }

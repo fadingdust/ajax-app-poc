@@ -11,7 +11,7 @@
       </div>
 
       <div v-if="error" class="status-message text-xs-center">
-        <v-icon mx-auto x-large color="teal lighten-1" :class="['fa', errorIcon, 'mt-4 mb-4']">{{errorIcon}}</v-icon>
+        <v-icon mx-auto x-large color="green " :class="['fa', errorIcon, 'mt-4 mb-4']">{{errorIcon}}</v-icon>
         <p class="xs8 offset-xs2" v-html="errorString"></p>
       </div>
 
@@ -21,10 +21,10 @@
                 v-model="active_tab"
                 color="transparent"
                 dark
-                slider-color="orange  lighten-1"
+                slider-color="white darken-2"
                 class="tabs"
               >
-                <div class="tabs-wrapper-custom flex md8 xs12">
+                <div class="tabs-wrapper-custom flex md8 xs12 red darken-4">
                   <v-tab ripple> Results </v-tab>
                   <v-tab ripple> Summary </v-tab>
                 </div>
@@ -79,9 +79,6 @@ h3{
   width:100%;
 }
 
-.tabs-wrapper-custom{
-  background:#789;
-}
 
 .tabs__bar{
   position: fixed!important;

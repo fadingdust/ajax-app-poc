@@ -11,7 +11,7 @@ import colors from 'vuetify/es5/util/colors'
 Vue.use(resource)
 Vue.use(Vuetify, {
   theme: {
-    primary: colors.orange.lighten1,
+    primary: colors.red.darken2,
     secondary: colors.indigo.darken2,
     accent: colors.teal.lighten1
   }

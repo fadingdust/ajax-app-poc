@@ -23,7 +23,7 @@
             <v-flex text-xs-center><v-icon mx-auto large color="grey" class="mb-1">fa-users</v-icon> <div v-html="hackedCount"></div> </v-flex>
 
             <v-flex text-xs-center>
-              <div v-if="itemdata.IsVerified"><v-icon mx-auto large color="teal lighten-1" class="is-verified mb-1">fa-check-square</v-icon><p> Verified </p> </div>
+              <div v-if="itemdata.IsVerified"><v-icon mx-auto large color="green" class="is-verified mb-1">fa-check-square</v-icon><p> Verified </p> </div>
               <div v-if="!itemdata.IsVerified"><v-icon mx-auto large color="yellow lighten-2" class="is-not-verified mb-1">fa-question-circle-o</v-icon><p> Not Verified </p> </div>
             </v-flex>
 
@@ -36,7 +36,7 @@
 
             <v-flex text-xs-center>
               <div v-if="itemdata.IsSpamList"><v-icon mx-auto large color="deep-orange darken-2" class="is-spam mb-1">fa-thumbs-o-down</v-icon> <p> Spam </p></div>
-              <div v-if="!itemdata.IsSpamList"><v-icon mx-auto large color="teal lighten-1" class="is-not-spam  mb-1">fa-thumbs-o-up</v-icon> <p> Not Spam </p> </div>
+              <div v-if="!itemdata.IsSpamList"><v-icon mx-auto large color="green" class="is-not-spam  mb-1">fa-thumbs-o-up</v-icon> <p> Not Spam </p> </div>
             </v-flex>
 
           </v-layout>
