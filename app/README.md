@@ -1,6 +1,12 @@
-# Vue-App
+# Have I Been Hacked?
 
 Front-End PWA for the ../api service.
+
+
+## Features
+* UI by [Vuetify](https://vuetifyjs.com/)
+* Unit Tests via [Jest](https://facebook.github.io/jest/)
+* End-to-End tests via Nightwatch
 
 ## Build Setup
 
