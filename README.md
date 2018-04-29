@@ -28,7 +28,7 @@ The goal here was to show how each layer would converse. Thus, it's a "Proof of 
 * All static resources are cached by a service worker
 * Custom 'not connected' error for offline end user
 
-## Unimplemented Ideas
+### Unimplemented Ideas
 * Using VueX for a local state-store would have been more appropriate if multiple data calls were being made, or any of the following ideas were implemented.
 * Option to save email addresses for automated background checks. User would receive a notification if new leaks were found.
 * Option to check-off each data-source once you have reset your password for that account.

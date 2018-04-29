@@ -42,11 +42,30 @@
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel="stylesheet"><!-- |Material+Icons -->
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel="stylesheet">
-
+    <style>
+    body{background-color: #fbfbfb;}
+    div.noscript-wrapper{
+      width:80%;min-width:300px;
+      margin: 10% auto;
+      background-color: #d32f2f;
+      color:white;
+      padding: 30px;
+      font-family: sans-serif;
+      font-weight:bold;
+    }
+    div.noscript-wrapper a{
+      color:white;
+    }
+    </style>
   </head>
   <body>
     <noscript>
-      This is your fallback content in case JavaScript fails to load.
+      <div class="noscript-wrapper">
+      <h2></h2>
+      <div class="avatar" style="height: 36px; width: 36px;"><img src="/static/img/icons/android-icon-36x36.png" alt="Logo"></div>
+      <p>It seems you do not have JavaScript enabled. This site won't be of much use without it.</p>
+      <p>Here are the <a href="https://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
+      </div>
     </noscript>
     <div id="app"></div>
     <!-- Todo: only include in production -->
