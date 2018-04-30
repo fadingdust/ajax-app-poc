@@ -21,26 +21,25 @@ export default  {
 
         })
         .catch(error => {
-            this.log.error({'service': 'eventController'}, error.message )
+            this.log.error({'service': 'pwnd', 'code_block': 'eventController'}, error.message )
 
             callback({ email: email_address, events: [], error: {'source':'eventController', 'message': error.message } })
         })
 
     },
 
-
     requestLogo: function(domain, callback){
-        const service = cb.Service.getFromAPI(domain)
-        service.then(result => {
-            callback(result)
+        const service = cb.Service.getFromAPI(domain) // responseModel: { iconURL: '', domain: '' , error: { 'status': '', 'message': ''} }
+        service.then(response => {
+            callback(response)
+            //NOTE: possible to have an 'error' attached to the result..
         })
         .catch(error => {
-            this.log.error({'service': 'eventController'}, error)
+            this.log.error({'service': 'clearbit', 'code_block': 'eventController'}, error)
 
             callback(error)
         })
 
     }
-
 
 }

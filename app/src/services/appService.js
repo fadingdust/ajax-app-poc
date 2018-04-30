@@ -1,7 +1,8 @@
 import Vue from 'vue'
+import Config from '../Config'
 
 let appApi = {}
-appApi.URI = 'https://beenhacked.mwallace.info/api'
+appApi.URI = Config.apiURL + Config.apiBasePath
 appApi.Service = {
 
   getHacksFromAPI (requestedEmail) {

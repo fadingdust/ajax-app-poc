@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node build/build.js",
-    "test": "vue-cli-service test",
+    "test": "API_URL='http://localhost:8088' vue-cli-service test",
     "e2e": "node test/e2e/runner.js",
     "lint": "eslint --ext .js,.vue src test/e2e/specs",
     "dev": "node build/dev-server.js",
